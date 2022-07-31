@@ -25,18 +25,33 @@ export const AuthActionCreators = {
         async (dispatch: AppDispatch) => {
             try {
                 dispatch(AuthActionCreators.setIsLoading(true))
-                const mockUsers = await  axios.get('./users.json')
-                console.log("mockUsers", mockUsers)
+
+                setTimeout(async () => {
+                    const response = await axios.get<IUser[]>('./users.json')
+                    const mockUser = response.data.find(user =>
+                        user.username === username && user.password === password)
+                    console.log("mockUser", mockUser)
+
+                    if (mockUser) {
+                        localStorage.setItem('auth', 'true')
+                        localStorage.setItem('username', mockUser.username)
+                        dispatch(AuthActionCreators.setIsAuth(true))
+                        dispatch(AuthActionCreators.setUser(mockUser))
+                    } else {
+                        dispatch(AuthActionCreators.setError('Некорректный пароль'))
+                    }
+                    dispatch(AuthActionCreators.setIsLoading(false))
+                }, 1000)
             } catch (err) {
                 dispatch(AuthActionCreators.setError('Ошибка логина'))
             }
         },
     logout: () =>
         async (dispatch: AppDispatch) => {
-        try {
+            localStorage.removeItem('auth')
+            localStorage.removeItem('username')
 
-        } catch (err) {
-
+            dispatch(AuthActionCreators.setUser({} as IUser))
+            dispatch(AuthActionCreators.setIsAuth(false))
         }
-        },
 }

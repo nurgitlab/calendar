@@ -3,11 +3,16 @@ import {Layout, Menu, Row} from "antd";
 import {useNavigate} from "react-router-dom";
 import {RouteNames} from "../router";
 import {useTypedSelector} from "../hooks/useTypedSelector";
+import {AuthActionCreators} from "../store/reducers/auth/action-creators";
+import {useTypedDispatch} from "../hooks/useTypedDispatch";
+import {useActions} from "../hooks/useActions";
 
 export const Navbar: FC = () => {
     const navigate = useNavigate()
+    const dispatch = useTypedDispatch()
 
-    const {isAuth} = useTypedSelector(state => state.auth)
+    const {isAuth, user} = useTypedSelector(state => state.auth)
+    const {logout} = useActions()
 
     return (
         <Layout.Header>
@@ -20,10 +25,12 @@ export const Navbar: FC = () => {
                             selectable={false}
                             style={{minWidth: '100px'}}
                         >
-                            <div style={{color: 'white'}}>Nurbek</div>
+                            <div style={{color: 'white'}}>
+                                {user.username}
+                            </div>
                             <Menu.Item
                                 key={1}
-                                onClick={() => console.log('Выйти')}
+                                onClick={logout}
                             >
                                 Выйти
                             </Menu.Item>
