@@ -1,15 +1,11 @@
 import {FC, useEffect, useState} from "react";
 import {Button, Form, Input} from "antd";
 import {rules} from "../utils/rules";
-import {useDispatch} from "react-redux";
-import {AuthActionCreators} from "../store/reducers/auth/action-creators";
-import {useTypedDispatch} from "../hooks/useTypedDispatch";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
 
 
 export const LoginForm: FC = () => {
-    const dispatch = useTypedDispatch()
     const {error, isLoading} = useTypedSelector(state => state.auth)
 
     const [username, setUsername] = useState('')
@@ -22,9 +18,9 @@ export const LoginForm: FC = () => {
         login(username, password)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log("isLoading", isLoading)
-    },[isLoading])
+    }, [isLoading])
 
     return (
         <Form
