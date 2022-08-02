@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig connectionConfig="{&quot;serverAliveInterval&quot;:300}" host="10.88.0.34" id="9b076dc3-295b-49ce-8498-ad3403d2c06c" keyPath="$USER_HOME$/.ssh/id_rsa" port="22" customName="officeDev" nameFormat="CUSTOM" username="root">
+        <option name="customName" value="officeDev" />
+      </sshConfig>
+      <sshConfig connectionConfig="{&quot;serverAliveInterval&quot;:300}" host="10.88.0.58" id="1648a6b6-541b-416e-a100-b95e5414967d" keyPath="$USER_HOME$/.ssh/id_rsa" port="22" customName="pamirDev" nameFormat="CUSTOM" username="root">
+        <option name="customName" value="pamirDev" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>
