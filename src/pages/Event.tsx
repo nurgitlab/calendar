@@ -1,10 +1,11 @@
 import React, {FC} from "react";
+import {EventCalendar} from "../components/EventCalendar";
 
 
 export const Event: FC = () => {
   return (
     <div>
-      EVENT PAGE
+      <EventCalendar events={[]}/>
     </div>
   )
 }
